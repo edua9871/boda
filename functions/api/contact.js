@@ -56,7 +56,15 @@ export async function onRequestPost(context) {
     if (!env.RESEND_API_KEY) {
       console.error('RESEND_API_KEY no está configurada')
       return new Response(
-        JSON.stringify({ error: 'Error de configuración del servidor' }),
+        JSON.stringify({
+          error: 'Error de configuración del servidor',
+          debug: {
+            exists: !!env.RESEND_API_KEY,
+            value: env.RESEND_API_KEY,
+            type: typeof env.RESEND_API_KEY,
+            allEnvKeys: Object.keys(env)
+          }
+        }),
         {
           status: 500,
           headers: { 'Content-Type': 'application/json' }
