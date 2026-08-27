@@ -1,0 +1,84 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ── Material Symbols ──────────────────────────────────────────────────────── */
+.material-symbols-outlined {
+  font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+  user-select: none;
+}
+
+/* ── Noise texture overlay ─────────────────────────────────────────────────── */
+#root::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  opacity: 0.025;
+  pointer-events: none;
+  z-index: 9999;
+}
+
+/* ── Scroll container ──────────────────────────────────────────────────────── */
+.app-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  height: 100dvh;
+  scroll-snap-type: y mandatory;
+  overflow-y: scroll;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.app-container::-webkit-scrollbar {
+  display: none;
+}
+
+/* ── Full-screen sections ──────────────────────────────────────────────────── */
+.page-section {
+  height: 100vh;
+  height: 100dvh;
+  overflow-y: auto;
+  scroll-snap-align: start;
+  flex-shrink: 0;
+  width: 100%;
+}
+
+/* ── Glassmorphism ─────────────────────────────────────────────────────────── */
+.glass {
+  background: rgba(255, 248, 244, 0.45);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+
+/* ── Animations ────────────────────────────────────────────────────────────── */
+@media (prefers-reduced-motion: no-preference) {
+  .ken-burns {
+    animation: kenburns 20s infinite alternate ease-in-out;
+  }
+
+  @keyframes kenburns {
+    0%   { transform: scale(1);   }
+    100% { transform: scale(1.1); }
+  }
+
+  .pulse-soft {
+    animation: pulse-soft 3s infinite ease-in-out;
+  }
+
+  @keyframes pulse-soft {
+    0%, 100% { opacity: 1;    transform: scale(1);    }
+    50%       { opacity: 0.85; transform: scale(1.02); }
+  }
+}
+
+/* ── Bottom nav active state ───────────────────────────────────────────────── */
+.nav-active {
+  color: #5c161e !important;
+  transform: scale(1.1);
+}
+
+.nav-active .material-symbols-outlined {
+  font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+}
