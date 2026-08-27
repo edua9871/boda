@@ -35,6 +35,14 @@
   display: none;
 }
 
+.bottom-nav {
+  scrollbar-width: none;
+}
+
+.bottom-nav::-webkit-scrollbar {
+  display: none;
+}
+
 /* ── Full-screen sections ──────────────────────────────────────────────────── */
 .page-section {
   height: 100vh;
