@@ -43,7 +43,7 @@ export const config = {
         title: env.VITE_STORY1_TITLE || 'El Primer Encuentro',
         text:  env.VITE_STORY1_TEXT  || 'Un café en el centro, una charla que duró horas y el inicio de un viaje que nunca imaginamos. Lo que comenzó como una coincidencia se convirtió en nuestro destino.',
         image: env.VITE_STORY1_IMAGE ||
-          'src/image/primer_encuentro.jpg',
+          './image/primer_encuentro.jpg',
         reverse: false,
       },
       {
