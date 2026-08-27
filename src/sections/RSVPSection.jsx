@@ -2,12 +2,6 @@ import { useState } from 'react'
 import { config } from '../config'
 import Icon from '../components/Icon'
 
-function encode(data) {
-  return Object.entries(data)
-    .map(([k, v]) => `${encodeURIComponent(k)}=${encodeURIComponent(v)}`)
-    .join('&')
-}
-
 export default function RSVPSection() {
   const { rsvp } = config
 
@@ -25,11 +19,22 @@ export default function RSVPSection() {
     e.preventDefault()
     setStatus('sending')
     try {
-      await fetch('/', {
+      const formData = new FormData()
+      formData.append('nombre', form.nombre)
+      formData.append('acompanantes', form.acompanantes)
+      formData.append('restricciones', form.restricciones)
+      formData.append('mensaje', form.mensaje)
+      formData.append('bot-field', '') // Honeypot field
+
+      const response = await fetch('/api/contact', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: encode({ 'form-name': 'rsvp', ...form }),
+        body: formData,
       })
+
+      if (!response.ok) {
+        throw new Error('Error al enviar el formulario')
+      }
+
       setStatus('success')
     } catch {
       setStatus('error')
@@ -60,14 +65,16 @@ export default function RSVPSection() {
           </div>
         ) : (
           <form
-            name="rsvp"
             onSubmit={handleSubmit}
             className="space-y-stack-md"
           >
-            {/* Netlify honeypot */}
-            <input type="hidden" name="form-name" value="rsvp" />
-            <div hidden>
-              <input name="bot-field" />
+            {/* Honeypot field para spam protection - oculto para usuarios */}
+            <div style={{ display: 'none' }}>
+              <input
+                name="bot-field"
+                tabIndex="-1"
+                autoComplete="off"
+              />
             </div>
 
             <div className="space-y-2">

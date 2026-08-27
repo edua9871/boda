@@ -182,11 +182,11 @@ export const config = {
 
   // ── Navegación ───────────────────────────────────────────────────────────────
   nav: [
-    { id: 'home',   icon: 'home',            label: 'Home'   },
-    { id: 'story',  icon: 'auto_stories',    label: 'Story'  },
+    { id: 'home',   icon: 'home',            label: 'Inicio'   },
+    { id: 'story',  icon: 'auto_stories',    label: 'Historia'  },
     { id: 'events', icon: 'event',           label: 'Eventos' },
     { id: 'gifts',  icon: 'redeem',          label: 'Regalos', visible: import.meta.env.VITE_SHOW_GIFTS !== 'false' },
-    { id: 'rsvp',   icon: 'event_available', label: 'RSVP'   },
+    { id: 'rsvp',   icon: 'event_available', label: 'Confirmar'   },
     { id: 'photos', icon: 'photo_library',   label: 'Fotos'  },
   ],
 }
