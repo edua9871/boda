@@ -111,8 +111,10 @@ export async function onRequestPost(context) {
 
   } catch (error) {
     console.error('Error en la función contact:', error)
+    console.error('Error message:', error.message)
+    console.error('Error stack:', error.stack)
     return new Response(
-      JSON.stringify({ error: 'Error al procesar la solicitud' }),
+      JSON.stringify({ error: 'Error al procesar la solicitud', details: error.message }),
       {
         status: 500,
         headers: { 'Content-Type': 'application/json' }
