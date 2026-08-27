@@ -5,6 +5,13 @@ export async function onRequestPost(context) {
   const { request, env } = context
 
   try {
+    // DEBUG: Log del valor de RESEND_API_KEY
+    console.log('=== DEBUG: RESEND_API_KEY ===')
+    console.log('Valor:', env.RESEND_API_KEY)
+    console.log('Tipo:', typeof env.RESEND_API_KEY)
+    console.log('Longitud:', env.RESEND_API_KEY ? env.RESEND_API_KEY.length : 'undefined')
+    console.log('=== FIN DEBUG ===')
+
     // Parsear el cuerpo de la solicitud
     const formData = await request.formData()
     const nombre = formData.get('nombre')
