@@ -5,6 +5,8 @@
 
 const env = import.meta.env
 import primerEncuentroImage from './image/primer_encuentro.jpg'
+import elSi from './image/el si.jpg'
+
 export const config = {
 
   // ── Pareja ──────────────────────────────────────────────────────────────────
@@ -39,20 +41,42 @@ export const config = {
     items: [
       {
         id: 1,
-        date:  env.VITE_STORY1_DATE  || 'Otoño 2018',
+        date:  env.VITE_STORY1_DATE  || 'Primavera 2024',
         title: env.VITE_STORY1_TITLE || 'El Primer Encuentro',
-        text:  env.VITE_STORY1_TEXT  || 'Un café en el centro, una charla que duró horas y el inicio de un viaje que nunca imaginamos. Lo que comenzó como una coincidencia se convirtió en nuestro destino.',
+        text:  env.VITE_STORY1_TEXT  || 'Fue una mañana cualquiera. Yo venía del dentista, sin imaginar que ese día tendría algo especial preparado para mí.\n' +
+            '\n' +
+            'Pasé a visitar a una tía y, sin saberlo, fue ahí donde la vi por primera vez. Conversamos, compartimos un momento y luego salimos con mi tía al centro a comprar algunas cosas. En el camino, incluso pasamos a comer unos completos.\n' +
+            '\n' +
+            'Hasta ese momento, parecía un día completamente normal. No había grandes señales ni nada que hiciera pensar que estaba comenzando una nueva historia.\n' +
+            '\n' +
+            'Pero al llegar a casa, encontré un mensaje que cambió todo:\n' +
+            '\n' +
+            '“¿Llegaste bien?”\n' +
+            '\n' +
+            'Quizás fueron solo unas palabras, un simple mensaje… pero fue ahí donde comenzó nuestra historia. Una historia que ninguno de los dos imaginaba que algún día nos llevaría hasta este momento.\n' +
+            '\n' +
+            'Y así, sin planearlo, sin buscarlo y en medio de un día cualquiera, comenzó nuestro primer encuentro.',
         image: env.VITE_STORY1_IMAGE ||
             primerEncuentroImage,
         reverse: false,
       },
       {
         id: 2,
-        date:  env.VITE_STORY2_DATE  || 'Verano 2023',
+        date:  env.VITE_STORY2_DATE  || 'Verano 2025',
         title: env.VITE_STORY2_TITLE || 'El "Sí"',
-        text:  env.VITE_STORY2_TEXT  || 'Bajo las estrellas y frente al mar, decidimos que queríamos caminar juntos el resto de nuestras vidas. Fue el momento más honesto y feliz que hemos compartido.',
+        text:  env.VITE_STORY2_TEXT  || 'Nuestro “Sí” tampoco fue algo planeado a la perfección… de hecho, fue bastante improvisado.\n' +
+            '\n' +
+            'Ya habíamos hablado alguna vez de casarnos y sabíamos que algún día daríamos ese paso. Pero una tarde, mientras estábamos recostados juntos, sentí que era el momento.\n' +
+            '\n' +
+            'No tenía una gran propuesta, ni un anillo preparado. Solo tenía la certeza de que quería compartir mi vida con ella. Así que, con un poco de ingenio, tomé un alambre y fabriqué una pequeña argolla.\n' +
+            '\n' +
+            'No era de oro, ni tenía diamantes, pero llevaba algo mucho más importante: la intención de pasar el resto de nuestras vidas juntos.\n' +
+            '\n' +
+            'Y así, entre risas, nervios y una argolla hecha a mano, llegó ese primer “Sí”.\n' +
+            '\n' +
+            'Quizás no fue la propuesta más tradicional, pero fue muy nuestra. ❤️',
         image: env.VITE_STORY2_IMAGE ||
-          'https://lh3.googleusercontent.com/aida-public/AB6AXuBpDE0GvucXOuKbhuHyEPoPrVHP0S3Pi5KxxxGJ_0l8eeUVFWfIB8BHNjqTvLa8RGUGNYNPQ368TYccJh-KCIgob8k4OvwzrJWWhtC7mMQsTMTo2YG-zBI6ZwhhjJZIvpqdQM88RMthzh_AleuOgYtVycCyCQgorlhLvgLkmlwnCbBT90pHI2yT5MtHtp2i_-uJv0zbTar3rawUYQrqE9xFm0_Rxfu6LqOvUT-DW-9j8u1WVhk0mOnMPWRqqAU_VVCDwY-uByNwJJWH',
+          elSi,
         reverse: true,
       },
     ],
