@@ -5,13 +5,6 @@ export async function onRequestPost(context) {
   const { request, env } = context
 
   try {
-    // DEBUG: Log del valor de RESEND_API_KEY
-    console.log('=== DEBUG: RESEND_API_KEY ===')
-    console.log('Valor:', env.RESEND_API_KEY)
-    console.log('Tipo:', typeof env.RESEND_API_KEY)
-    console.log('Longitud:', env.RESEND_API_KEY ? env.RESEND_API_KEY.length : 'undefined')
-    console.log('=== FIN DEBUG ===')
-
     // Parsear el cuerpo de la solicitud
     const formData = await request.formData()
     const nombre = formData.get('nombre')
@@ -56,15 +49,7 @@ export async function onRequestPost(context) {
     if (!env.RESEND_API_KEY) {
       console.error('RESEND_API_KEY no está configurada')
       return new Response(
-        JSON.stringify({
-          error: 'Error de configuración del servidor',
-          debug: {
-            exists: !!env.RESEND_API_KEY,
-            value: env.RESEND_API_KEY,
-            type: typeof env.RESEND_API_KEY,
-            allEnvKeys: Object.keys(env)
-          }
-        }),
+        JSON.stringify({ error: 'Error de configuración del servidor' }),
         {
           status: 500,
           headers: { 'Content-Type': 'application/json' }
@@ -102,7 +87,6 @@ export async function onRequestPost(context) {
     if (!resendResponse.ok) {
       const errorText = await resendResponse.text()
       console.error('Error al enviar email con Resend:', errorText)
-      console.error('Status:', resendResponse.status)
       return new Response(
         JSON.stringify({ error: 'Error al enviar la confirmación', details: errorText }),
         {
@@ -126,10 +110,8 @@ export async function onRequestPost(context) {
 
   } catch (error) {
     console.error('Error en la función contact:', error)
-    console.error('Error message:', error.message)
-    console.error('Error stack:', error.stack)
     return new Response(
-      JSON.stringify({ error: 'Error al procesar la solicitud', details: error.message }),
+      JSON.stringify({ error: 'Error al procesar la solicitud' }),
       {
         status: 500,
         headers: { 'Content-Type': 'application/json' }

@@ -50,13 +50,6 @@ export default function RSVPSection() {
       className="page-section bg-surface-dim flex flex-col justify-center py-20"
     >
       <div className="max-w-3xl mx-auto px-margin-mobile bg-surface-container-lowest rounded-xl shadow-xl p-stack-lg md:p-stack-xl w-full">
-        <div className="text-center mb-stack-xl">
-          <h2 className="font-headline-md text-primary mb-stack-sm">
-            {rsvp.title}
-          </h2>
-          <p className="font-body-md text-on-surface-variant">{rsvp.subtitle}</p>
-        </div>
-
         {status === 'success' ? (
           <div className="text-center space-y-stack-md py-stack-lg">
             <Icon name="favorite" className="text-primary text-6xl" style={{ fontVariationSettings: "'FILL' 1" }} />
@@ -64,10 +57,18 @@ export default function RSVPSection() {
             <p className="font-body-md text-on-surface-variant">{rsvp.successText}</p>
           </div>
         ) : (
-          <form
-            onSubmit={handleSubmit}
-            className="space-y-stack-md"
-          >
+          <>
+            <div className="text-center mb-stack-xl">
+              <h2 className="font-headline-md text-primary mb-stack-sm">
+                {rsvp.title}
+              </h2>
+              <p className="font-body-md text-on-surface-variant">{rsvp.subtitle}</p>
+            </div>
+
+            <form
+              onSubmit={handleSubmit}
+              className="space-y-stack-md"
+            >
             {/* Honeypot field para spam protection - oculto para usuarios */}
             <div style={{ display: 'none' }}>
               <input
@@ -150,6 +151,7 @@ export default function RSVPSection() {
               </p>
             )}
           </form>
+          </>
         )}
       </div>
     </section>
