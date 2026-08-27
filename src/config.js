@@ -43,7 +43,7 @@ export const config = {
         title: env.VITE_STORY1_TITLE || 'El Primer Encuentro',
         text:  env.VITE_STORY1_TEXT  || 'Un café en el centro, una charla que duró horas y el inicio de un viaje que nunca imaginamos. Lo que comenzó como una coincidencia se convirtió en nuestro destino.',
         image: env.VITE_STORY1_IMAGE ||
-          'https://lh3.googleusercontent.com/aida-public/AB6AXuAFqGnEvqagMZmvTsz97_59QyG5YWpSW4i_PgfWb7y4mtg4-J-HPAB6N7u3p-0Zk1tggBLGtmkeDH8N0wAi9D3IPAIkpGEabo_ScDQdHa0FvB0_8GbIkeuFWAUwhS-7tlhz53pkSbYhpDNhtRBBXHwzuax5bPfQQlGI7sBtRkATzvTu6MENpc42BfAEfvqIKtkSYJsi5GwWNviUuaTIeEcheyFIRCi6pwCquVLSTzdAGHkAtvNyzgEjLmpRPySRfVjdXVfLTz4oYYHX',
+          'src/image/primer_encuentro.jpg',
         reverse: false,
       },
       {
@@ -99,7 +99,7 @@ export const config = {
   rsvp: {
     title: 'Confirma tu Asistencia',
     subtitle: `Por favor, confirma antes del ${env.VITE_RSVP_DEADLINE || '15 de Septiembre'}.`,
-    maxGuests: Number(env.VITE_RSVP_MAX_GUESTS) || 5,
+    maxGuests: Number(env.VITE_RSVP_MAX_GUESTS) || 2,
     submitText: 'Enviar Confirmación',
     successTitle: '¡Gracias por confirmar!',
     successText: 'Ya anotamos tu asistencia. ¡Te esperamos con mucho cariño! 🤍',
