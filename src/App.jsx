@@ -9,6 +9,7 @@ import CountdownSection from './sections/CountdownSection'
 import StorySection     from './sections/StorySection'
 import EventsSection    from './sections/EventsSection'
 import DressCodeSection from './sections/DressCodeSection'
+import GiftsSection     from './sections/GiftsSection'
 import RSVPSection      from './sections/RSVPSection'
 import PhotosSection    from './sections/PhotosSection'
 
@@ -30,6 +31,7 @@ export default function App() {
         {config.show.story     && <StorySection />}
         {config.show.events    && <EventsSection />}
         {config.show.dressCode && <DressCodeSection />}
+        {config.show.gifts     && <GiftsSection />}
         {config.show.rsvp      && <RSVPSection />}
         {config.show.photos    && <PhotosSection />}
       </main>

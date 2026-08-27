@@ -119,6 +119,30 @@ export const config = {
     colorNote: env.VITE_DRESSCODE_COLORS || 'Colores sugeridos: Tonos tierra, champagne y oscuros.',
   },
 
+  // ── Regalos ─────────────────────────────────────────────────────────────────
+  // Las variables VITE_ son públicas en el navegador. Usa solo datos bancarios
+  // destinados a recibir transferencias; nunca agregues claves o credenciales.
+  gifts: {
+    eyebrow: env.VITE_GIFTS_EYEBROW || 'Un detalle con cariño',
+    title: env.VITE_GIFTS_TITLE || 'El mejor regalo es compartir este día',
+    message: env.VITE_GIFTS_MESSAGE || 'Su presencia es lo más importante para nosotros. Si además desean hacernos un obsequio, pueden ayudarnos a comenzar esta nueva etapa con un aporte voluntario.',
+    closing: env.VITE_GIFTS_CLOSING || 'Gracias por acompañarnos con tanto cariño.',
+    cardLabel: env.VITE_GIFTS_CARD_LABEL || 'Aporte voluntario',
+    cardTitle: env.VITE_GIFTS_CARD_TITLE || 'Datos para transferencia',
+    emptyMessage: env.VITE_GIFTS_EMPTY_MESSAGE || 'Los datos para transferencia estarán disponibles muy pronto.',
+    note: env.VITE_GIFTS_NOTE || 'Si realizas una transferencia, puedes incluir tu nombre en el mensaje para poder agradecerte personalmente.',
+    copySuccess: env.VITE_GIFTS_COPY_SUCCESS || '{field} copiado correctamente.',
+    copyError: env.VITE_GIFTS_COPY_ERROR || 'No fue posible copiar el dato. Puedes seleccionarlo manualmente.',
+    details: [
+      { label: env.VITE_GIFTS_BANK_LABEL || 'Banco', value: env.VITE_GIFTS_BANK || 'Banco de ejemplo', copyable: false },
+      { label: env.VITE_GIFTS_ACCOUNT_TYPE_LABEL || 'Tipo de cuenta', value: env.VITE_GIFTS_ACCOUNT_TYPE || 'Cuenta corriente', copyable: false },
+      { label: env.VITE_GIFTS_ACCOUNT_NUMBER_LABEL || 'Número de cuenta', value: env.VITE_GIFTS_ACCOUNT_NUMBER || '0000 0000 0000', copyable: true },
+      { label: env.VITE_GIFTS_HOLDER_LABEL || 'Titular', value: env.VITE_GIFTS_HOLDER || `${env.VITE_NAME1 || 'María José'} & ${env.VITE_NAME2 || 'Luis Eduardo'}`, copyable: false },
+      { label: env.VITE_GIFTS_ID_LABEL || 'Documento', value: env.VITE_GIFTS_ID || 'XX.XXX.XXX-X', copyable: true },
+      { label: env.VITE_GIFTS_EMAIL_LABEL || 'Correo', value: env.VITE_GIFTS_EMAIL || 'regalos@ejemplo.com', copyable: true },
+    ],
+  },
+
   // ── RSVP ────────────────────────────────────────────────────────────────────
   rsvp: {
     title: 'Confirma tu Asistencia',
@@ -145,6 +169,7 @@ export const config = {
     story:     import.meta.env.VITE_SHOW_STORY     !== 'false',
     events:    import.meta.env.VITE_SHOW_EVENTS    !== 'false',
     dressCode: import.meta.env.VITE_SHOW_DRESSCODE !== 'false',
+    gifts:     import.meta.env.VITE_SHOW_GIFTS     !== 'false',
     rsvp:      import.meta.env.VITE_SHOW_RSVP      !== 'false',
     photos:    import.meta.env.VITE_SHOW_PHOTOS    !== 'false',
   },
@@ -160,6 +185,7 @@ export const config = {
     { id: 'home',   icon: 'home',            label: 'Home'   },
     { id: 'story',  icon: 'auto_stories',    label: 'Story'  },
     { id: 'events', icon: 'event',           label: 'Eventos' },
+    { id: 'gifts',  icon: 'redeem',          label: 'Regalos', visible: import.meta.env.VITE_SHOW_GIFTS !== 'false' },
     { id: 'rsvp',   icon: 'event_available', label: 'RSVP'   },
     { id: 'photos', icon: 'photo_library',   label: 'Fotos'  },
   ],
