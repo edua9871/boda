@@ -87,8 +87,9 @@ export async function onRequestPost(context) {
     if (!resendResponse.ok) {
       const errorText = await resendResponse.text()
       console.error('Error al enviar email con Resend:', errorText)
+      console.error('Status:', resendResponse.status)
       return new Response(
-        JSON.stringify({ error: 'Error al enviar la confirmación' }),
+        JSON.stringify({ error: 'Error al enviar la confirmación', details: errorText }),
         {
           status: 500,
           headers: { 'Content-Type': 'application/json' }
