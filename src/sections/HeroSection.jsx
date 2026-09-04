@@ -20,7 +20,7 @@ export default function HeroSection({ scrollTo }) {
 
       {/* Content */}
       <div className="relative z-10 text-surface-container-lowest space-y-stack-md pt-16">
-        <h1 className="font-display-lg text-4xl md:text-6xl tracking-tight leading-tight">
+        <h1 className="font-display-lg">
           {couple.name1} &amp; {couple.name2}
         </h1>
         <p className="font-label-md uppercase tracking-[0.2em] opacity-90">
