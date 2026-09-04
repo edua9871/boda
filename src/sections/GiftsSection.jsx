@@ -58,26 +58,12 @@ export default function GiftsSection() {
               <span className="size-11 rounded-[999px] bg-white/10 flex items-center justify-center shrink-0">
                 <Icon name="volunteer_activism" className="text-secondary-fixed text-[26px]" />
               </span>
-              <div className="min-w-0 flex-1">
+              <div>
                 <p className="font-label-md uppercase tracking-widest text-primary-fixed-dim">
                   {gifts.cardLabel}
                 </p>
                 <h3 className="font-headline-md text-2xl">{gifts.cardTitle}</h3>
               </div>
-              {availableDetails.length > 0 && (
-                <button
-                  type="button"
-                  onClick={copyAllDetails}
-                  className="flex shrink-0 items-center gap-1.5 rounded-full border border-white/30 bg-white/10 px-3 py-2 font-label-md text-[11px] uppercase tracking-widest transition-colors hover:bg-white/20 active:scale-95 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
-                  aria-label="Copiar todos los datos para transferencia"
-                >
-                  <Icon
-                    name={copiedField === 'Todos los datos' ? 'check' : 'content_copy'}
-                    className="text-[16px]"
-                  />
-                  <span className="hidden sm:inline">Copiar todo</span>
-                </button>
-              )}
             </div>
 
             {availableDetails.length > 0 ? (
@@ -114,6 +100,23 @@ export default function GiftsSection() {
                 <p className="font-body-md text-on-surface-variant">
                   {gifts.emptyMessage}
                 </p>
+              </div>
+            )}
+
+            {availableDetails.length > 0 && (
+              <div className="px-6 pt-2 pb-4">
+                <button
+                  type="button"
+                  onClick={copyAllDetails}
+                  className="flex w-full items-center justify-center gap-2 rounded-xl bg-primary py-4 font-label-md uppercase tracking-widest text-on-primary transition-transform hover:opacity-90 active:scale-[0.98] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+                  aria-label="Copiar todos los datos bancarios"
+                >
+                  <Icon
+                    name={copiedField === 'Todos los datos' ? 'check' : 'content_copy'}
+                    className="text-[18px]"
+                  />
+                  Copiar datos bancarios
+                </button>
               </div>
             )}
 

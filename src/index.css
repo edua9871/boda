@@ -25,7 +25,7 @@
   flex-direction: column;
   height: 100vh;
   height: 100dvh;
-  scroll-snap-type: y mandatory;
+  scroll-snap-type: y proximity;
   overflow-y: scroll;
   scrollbar-width: none;
   -ms-overflow-style: none;
@@ -98,13 +98,6 @@
 }
 
 @media (max-width: 767px) {
-  /*
-   * Antes cada sección forzaba 100dvh con scroll interno y contenido centrado,
-   * así que si el contenido era más alto que la pantalla se recortaba de forma
-   * invisible y simétrica (arriba y abajo) detrás del Header/BottomNav fijos.
-   * Dejar que la sección crezca con su contenido y se desplace con el scroll
-   * normal de la página soluciona esto para todas las secciones, no solo una.
-   */
   .page-section {
     height: auto;
     min-height: 100dvh;
