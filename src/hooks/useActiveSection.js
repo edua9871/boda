@@ -13,15 +13,29 @@ export function useActiveSection(containerRef) {
     const container = containerRef.current
     if (!container) return
 
+    const ratios = new Map()
+
     observerRef.current = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setActive(entry.target.id)
+          ratios.set(entry.target.id, entry.isIntersecting ? entry.intersectionRatio : 0)
+        })
+
+        let bestId = null
+        let bestRatio = 0
+        ratios.forEach((ratio, id) => {
+          if (ratio > bestRatio) {
+            bestRatio = ratio
+            bestId = id
           }
         })
+        if (bestId) setActive(bestId)
       },
-      { root: container, threshold: 0.55 }
+      // Una sección puede ser más alta que el viewport (contenido largo en
+      // pantallas chicas), así que un único umbral alto como 0.55 podría no
+      // dispararse nunca. Muestrear varios umbrales y elegir la sección más
+      // visible funciona sin importar su altura.
+      { root: container, threshold: [0, 0.1, 0.25, 0.5, 0.75, 1] }
     )
 
     const sections = container.querySelectorAll('.page-section')

@@ -44,11 +44,17 @@
 }
 
 /* ── Full-screen sections ──────────────────────────────────────────────────── */
+:root {
+  --header-h: 64px; /* Header h-16 */
+  --bottom-nav-h: 64px; /* BottomNav icon + label + vertical padding */
+}
+
 .page-section {
   height: 100vh;
   height: 100dvh;
   overflow-y: auto;
   scroll-snap-align: start;
+  scroll-margin-top: var(--header-h);
   flex-shrink: 0;
   width: 100%;
 }
@@ -92,9 +98,18 @@
 }
 
 @media (max-width: 767px) {
-  .gifts-section {
+  /*
+   * Antes cada sección forzaba 100dvh con scroll interno y contenido centrado,
+   * así que si el contenido era más alto que la pantalla se recortaba de forma
+   * invisible y simétrica (arriba y abajo) detrás del Header/BottomNav fijos.
+   * Dejar que la sección crezca con su contenido y se desplace con el scroll
+   * normal de la página soluciona esto para todas las secciones, no solo una.
+   */
+  .page-section {
     height: auto;
     min-height: 100dvh;
     overflow-y: visible;
+    padding-bottom: calc(var(--bottom-nav-h) + env(safe-area-inset-bottom));
+    box-sizing: border-box;
   }
 }

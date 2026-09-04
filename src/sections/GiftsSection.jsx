@@ -21,7 +21,7 @@ export default function GiftsSection() {
   return (
     <section
       id="gifts"
-      className="page-section gifts-section relative isolate overflow-hidden bg-surface-container-low flex flex-col justify-center py-24"
+      className="page-section relative isolate overflow-hidden bg-surface-container-low flex flex-col justify-center py-24"
     >
       <div className="absolute -top-24 -right-24 size-72 rounded-[999px] bg-primary-fixed/35 blur-3xl -z-10" />
       <div className="absolute -bottom-32 -left-20 size-80 rounded-[999px] bg-secondary-fixed/45 blur-3xl -z-10" />
