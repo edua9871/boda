@@ -18,6 +18,14 @@ export default function GiftsSection() {
     }
   }
 
+  const allDetailsText = availableDetails
+    .map(({ label, value }) => `${label}: ${value}`)
+    .join('\n')
+
+  function copyAllDetails() {
+    return copyValue('Todos los datos', allDetailsText)
+  }
+
   return (
     <section
       id="gifts"
@@ -50,12 +58,26 @@ export default function GiftsSection() {
               <span className="size-11 rounded-[999px] bg-white/10 flex items-center justify-center shrink-0">
                 <Icon name="volunteer_activism" className="text-secondary-fixed text-[26px]" />
               </span>
-              <div>
+              <div className="min-w-0 flex-1">
                 <p className="font-label-md uppercase tracking-widest text-primary-fixed-dim">
                   {gifts.cardLabel}
                 </p>
                 <h3 className="font-headline-md text-2xl">{gifts.cardTitle}</h3>
               </div>
+              {availableDetails.length > 0 && (
+                <button
+                  type="button"
+                  onClick={copyAllDetails}
+                  className="flex shrink-0 items-center gap-1.5 rounded-full border border-white/30 bg-white/10 px-3 py-2 font-label-md text-[11px] uppercase tracking-widest transition-colors hover:bg-white/20 active:scale-95 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+                  aria-label="Copiar todos los datos para transferencia"
+                >
+                  <Icon
+                    name={copiedField === 'Todos los datos' ? 'check' : 'content_copy'}
+                    className="text-[16px]"
+                  />
+                  <span className="hidden sm:inline">Copiar todo</span>
+                </button>
+              )}
             </div>
 
             {availableDetails.length > 0 ? (
