@@ -7,6 +7,13 @@ const env = import.meta.env
 import primerEncuentroImage from './image/primer_encuentro.jpg'
 import elSi from './image/el si.jpg'
 
+// Convierte un link de "compartir" de Google Drive (.../file/d/ID/view)
+// en una URL de imagen directa que sí puede usarse en un <img src>.
+function resolveImageUrl(url) {
+  const match = url?.match(/drive\.google\.com\/(?:file\/d\/|open\?id=)([\w-]+)/)
+  return match ? `https://lh3.googleusercontent.com/d/${match[1]}` : url
+}
+
 export const config = {
 
   // ── Pareja ──────────────────────────────────────────────────────────────────
@@ -24,7 +31,7 @@ export const config = {
 
   // ── Hero ────────────────────────────────────────────────────────────────────
   hero: {
-    backgroundImage: env.VITE_HERO_IMAGE ||
+    backgroundImage: resolveImageUrl(env.VITE_HERO_IMAGE) ||
       'https://lh3.googleusercontent.com/aida-public/AB6AXuAe8_YRAtuzULcTyfv-t5HfAwZuiDu1Y-wyfRMDxB5_y4YFUrfpmlQJnZCeEiH-N9UkcJxs4vpwn4np9BXo3OHPcRmv3H5V3k2qbN9dePv7BlLOuXNhBpSlaiX0lG92BWLQoeIo6oG6Sl8jGa_gRWNCdp9c4sg7D-HyfF1Vnh43oLUPLBBXEPL3mVYgqnd9WFlkh4-ALh1Oj4-YA4BtTpYMr4UoFv_XhGF9J1Fx7zvkme9mluLRvmX-WsAUVlOe3U8Ghlp5mf0PbLlT',
     ctaText: 'Ver Invitación',
   },
@@ -56,7 +63,7 @@ export const config = {
             'Quizás fueron solo unas palabras, un simple mensaje… pero fue ahí donde comenzó nuestra historia. Una historia que ninguno de los dos imaginaba que algún día nos llevaría hasta este momento.\n' +
             '\n' +
             'Y así, sin planearlo, sin buscarlo y en medio de un día cualquiera, comenzó nuestro primer encuentro.',
-        image: env.VITE_STORY1_IMAGE ||
+        image: resolveImageUrl(env.VITE_STORY1_IMAGE) ||
             primerEncuentroImage,
         reverse: false,
       },
@@ -75,7 +82,7 @@ export const config = {
             'Y así, entre risas, nervios y una argolla hecha a mano, llegó ese primer “Sí”.\n' +
             '\n' +
             'Quizás no fue la propuesta más tradicional, pero fue muy nuestra. ❤️',
-        image: env.VITE_STORY2_IMAGE ||
+        image: resolveImageUrl(env.VITE_STORY2_IMAGE) ||
           elSi,
         reverse: true,
       },
