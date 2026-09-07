@@ -73,7 +73,7 @@
 
 .page-section {
   min-height: 100vh;
-  min-height: 100dvh;
+  min-height: 100svh;
   scroll-margin-top: var(--header-h);
   width: 100%;
   box-sizing: border-box;
