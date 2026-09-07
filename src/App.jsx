@@ -1,4 +1,3 @@
-import { useRef } from 'react'
 import { config } from './config'
 import Header from './components/Header'
 import BottomNav from './components/BottomNav'
@@ -14,18 +13,17 @@ import RSVPSection      from './sections/RSVPSection'
 import PhotosSection    from './sections/PhotosSection'
 
 export default function App() {
-  const containerRef = useRef(null)
-  const activeSection = useActiveSection(containerRef)
+  const activeSection = useActiveSection()
 
   function scrollTo(id) {
     document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' })
   }
 
   return (
-    <div className="bg-background text-on-background selection:bg-primary-fixed selection:text-on-primary-fixed h-full overflow-hidden">
+    <div className="bg-background text-on-background selection:bg-primary-fixed selection:text-on-primary-fixed">
       <Header />
 
-      <main ref={containerRef} className="app-container">
+      <main>
         <HeroSection      scrollTo={scrollTo} />
         {config.show.countdown && <CountdownSection />}
         {config.show.story     && <StorySection />}

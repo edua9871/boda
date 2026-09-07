@@ -2,17 +2,13 @@ import { useEffect, useRef, useState } from 'react'
 import { config } from '../config'
 
 /**
- * Returns the id of the section currently most visible in the scroll container.
- * @param {React.RefObject} containerRef - ref to the scroll container
+ * Devuelve el id de la sección más visible en el viewport de la página.
  */
-export function useActiveSection(containerRef) {
+export function useActiveSection() {
   const [active, setActive] = useState(config.nav[0].id)
   const observerRef = useRef(null)
 
   useEffect(() => {
-    const container = containerRef.current
-    if (!container) return
-
     const ratios = new Map()
 
     observerRef.current = new IntersectionObserver(
@@ -31,14 +27,14 @@ export function useActiveSection(containerRef) {
         })
         if (bestId) setActive(bestId)
       },
-      { root: container, threshold: [0, 0.1, 0.25, 0.5, 0.75, 1] }
+      { threshold: [0, 0.1, 0.25, 0.5, 0.75, 1] }
     )
 
-    const sections = container.querySelectorAll('.page-section')
+    const sections = document.querySelectorAll('.page-section')
     sections.forEach((s) => observerRef.current.observe(s))
 
     return () => observerRef.current?.disconnect()
-  }, [containerRef])
+  }, [])
 
   return active
 }
