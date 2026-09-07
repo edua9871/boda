@@ -58,6 +58,7 @@ export async function onRequestPost(context) {
     }
 
     // Preparar el email para Resend
+    const showGuests = env.VITE_RSVP_SHOW_GUESTS !== 'false'
     const emailData = {
       from: 'Invitación Boda <onboarding@resend.dev>',
       to: env.RESEND_TO_EMAIL || 'boda@ejemplo.com',
@@ -66,7 +67,7 @@ export async function onRequestPost(context) {
       html: `
         <h2>Nueva confirmación de asistencia</h2>
         <p><strong>Nombre:</strong> ${nombre}</p>
-        <p><strong>Acompañantes:</strong> ${acompanantes}</p>
+        ${showGuests ? `<p><strong>Acompañantes:</strong> ${acompanantes}</p>` : ''}
         <p><strong>Restricciones alimentarias:</strong> ${restricciones || 'Ninguna'}</p>
         <p><strong>Mensaje:</strong> ${mensaje || 'Sin mensaje'}</p>
         <hr>

@@ -154,6 +154,7 @@ export const config = {
   rsvp: {
     title: 'Confirma tu Asistencia',
     subtitle: `Por favor, confirma antes del ${env.VITE_RSVP_DEADLINE || '15 de Septiembre'}.`,
+    showGuests: env.VITE_RSVP_SHOW_GUESTS !== 'false',
     maxGuests: Number(env.VITE_RSVP_MAX_GUESTS) || 2,
     submitText: 'Enviar Confirmación',
     successTitle: '¡Gracias por confirmar!',

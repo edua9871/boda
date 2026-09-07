@@ -91,22 +91,24 @@ export default function RSVPSection() {
               />
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-stack-md">
-              <div className="space-y-2">
-                <label className="font-label-md text-secondary">Acompañantes</label>
-                <select
-                  name="acompanantes"
-                  value={form.acompanantes}
-                  onChange={set('acompanantes')}
-                  className={inputClass}
-                >
-                  {Array.from({ length: rsvp.maxGuests }, (_, i) => i + 1).map((n) => (
-                    <option key={n} value={n}>
-                      {n} {n === 1 ? 'Persona' : 'Personas'}
-                    </option>
-                  ))}
-                </select>
-              </div>
+            <div className={`grid grid-cols-1 gap-stack-md ${rsvp.showGuests ? 'md:grid-cols-2' : ''}`}>
+              {rsvp.showGuests && (
+                <div className="space-y-2">
+                  <label className="font-label-md text-secondary">Acompañantes</label>
+                  <select
+                    name="acompanantes"
+                    value={form.acompanantes}
+                    onChange={set('acompanantes')}
+                    className={inputClass}
+                  >
+                    {Array.from({ length: rsvp.maxGuests }, (_, i) => i + 1).map((n) => (
+                      <option key={n} value={n}>
+                        {n} {n === 1 ? 'Persona' : 'Personas'}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+              )}
 
               <div className="space-y-2">
                 <label className="font-label-md text-secondary">
