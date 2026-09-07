@@ -9,9 +9,17 @@ import elSi from './image/el si.jpg'
 
 // Convierte un link de "compartir" de Google Drive (.../file/d/ID/view)
 // en una URL de imagen directa que sí puede usarse en un <img src>.
-function resolveImageUrl(url) {
+// Además, si el resultado queda en googleusercontent.com, le pide a Google
+// que sirva la imagen ya redimensionada (width en px) en vez de la original
+// a resolución de cámara — sin esto, una foto de varios MB se descarga entera
+// aunque en la página se muestre en una caja de unos cientos de px.
+function resolveImageUrl(url, width) {
   const match = url?.match(/drive\.google\.com\/(?:file\/d\/|open\?id=)([\w-]+)/)
-  return match ? `https://lh3.googleusercontent.com/d/${match[1]}` : url
+  let resolved = match ? `https://lh3.googleusercontent.com/d/${match[1]}` : url
+  if (width && resolved?.includes('googleusercontent.com') && !/[=&]w\d/.test(resolved)) {
+    resolved += `=w${width}`
+  }
+  return resolved
 }
 
 export const config = {
@@ -31,7 +39,7 @@ export const config = {
 
   // ── Hero ────────────────────────────────────────────────────────────────────
   hero: {
-    backgroundImage: resolveImageUrl(env.VITE_HERO_IMAGE) ||
+    backgroundImage: resolveImageUrl(env.VITE_HERO_IMAGE, 1920) ||
       'https://lh3.googleusercontent.com/aida-public/AB6AXuAe8_YRAtuzULcTyfv-t5HfAwZuiDu1Y-wyfRMDxB5_y4YFUrfpmlQJnZCeEiH-N9UkcJxs4vpwn4np9BXo3OHPcRmv3H5V3k2qbN9dePv7BlLOuXNhBpSlaiX0lG92BWLQoeIo6oG6Sl8jGa_gRWNCdp9c4sg7D-HyfF1Vnh43oLUPLBBXEPL3mVYgqnd9WFlkh4-ALh1Oj4-YA4BtTpYMr4UoFv_XhGF9J1Fx7zvkme9mluLRvmX-WsAUVlOe3U8Ghlp5mf0PbLlT',
     ctaText: 'Ver Invitación',
   },
@@ -63,7 +71,7 @@ export const config = {
             'Quizás fueron solo unas palabras, un simple mensaje… pero fue ahí donde comenzó nuestra historia. Una historia que ninguno de los dos imaginaba que algún día nos llevaría hasta este momento.\n' +
             '\n' +
             'Y así, sin planearlo, sin buscarlo y en medio de un día cualquiera, comenzó nuestro primer encuentro.',
-        image: resolveImageUrl(env.VITE_STORY1_IMAGE) ||
+        image: resolveImageUrl(env.VITE_STORY1_IMAGE, 1200) ||
             primerEncuentroImage,
         reverse: false,
       },
@@ -82,7 +90,7 @@ export const config = {
             'Y así, entre risas, nervios y una argolla hecha a mano, llegó ese primer “Sí”.\n' +
             '\n' +
             'Quizás no fue la propuesta más tradicional, pero fue muy nuestra. ❤️',
-        image: resolveImageUrl(env.VITE_STORY2_IMAGE) ||
+        image: resolveImageUrl(env.VITE_STORY2_IMAGE, 1200) ||
           elSi,
         reverse: true,
       },

@@ -14,6 +14,9 @@ export default function HeroSection({ scrollTo }) {
           src={hero.backgroundImage}
           alt="Foto de portada"
           className="w-full h-full object-cover ken-burns"
+          loading="eager"
+          decoding="async"
+          fetchpriority="high"
         />
         <div className="absolute inset-0 bg-primary/30" />
       </div>
