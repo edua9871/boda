@@ -25,7 +25,7 @@ export default function App() {
 
       <main>
         <HeroSection      scrollTo={scrollTo} />
-        {config.show.countdown && <CountdownSection />}
+        {config.show.countdown && <CountdownSection scrollTo={scrollTo} />}
         {config.show.story     && <StorySection />}
         {config.show.events    && <EventsSection />}
         {config.show.dressCode && <DressCodeSection />}

@@ -15,7 +15,7 @@ function getTimeLeft(targetDate) {
   return { days: pad(days), hours: pad(hours), minutes: pad(minutes) }
 }
 
-export default function CountdownSection() {
+export default function CountdownSection({ scrollTo }) {
   const { countdown, wedding } = config
   const [time, setTime] = useState(() => getTimeLeft(wedding.date))
 
@@ -54,9 +54,14 @@ export default function CountdownSection() {
           ))}
         </div>
 
-        <div className="mt-stack-xl text-primary/40">
+        <button
+          type="button"
+          onClick={() => scrollTo('story')}
+          className="mt-stack-xl text-primary/40 hover:text-primary/70 transition-colors"
+          aria-label="Ir a la siguiente sección"
+        >
           <Icon name="expand_more" />
-        </div>
+        </button>
       </div>
     </section>
   )
