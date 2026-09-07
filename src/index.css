@@ -88,13 +88,15 @@
 }
 
 .page-section {
-  height: 100vh;
-  height: 100dvh;
-  overflow-y: auto;
+  min-height: 100vh;
+  min-height: 100dvh;
+  overflow-y: visible;
   scroll-snap-align: start;
   scroll-margin-top: var(--header-h);
   flex-shrink: 0;
   width: 100%;
+  box-sizing: border-box;
+  padding-bottom: calc(var(--bottom-nav-h) + env(safe-area-inset-bottom));
 }
 
 /* ── Glassmorphism ─────────────────────────────────────────────────────────── */
@@ -133,14 +135,4 @@
 
 .nav-active .material-symbols-outlined {
   font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
-}
-
-@media (max-width: 767px) {
-  .page-section {
-    height: auto;
-    min-height: 100dvh;
-    overflow-y: visible;
-    padding-bottom: calc(var(--bottom-nav-h) + env(safe-area-inset-bottom));
-    box-sizing: border-box;
-  }
 }
